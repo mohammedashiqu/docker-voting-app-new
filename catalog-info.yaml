@@ -1,0 +1,41 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-voting-app
+  description: Our voting app
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    sonarqube.org/project-key: example-voting-app
+    github.com/project-slug: 5ubstance/example-voting-app
+  links:
+    - url: https://my.monitoring.url/
+      title: Monitoring
+      icon: dashboard
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-b
+  system: voting
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: React API
+      license:
+        name: MIT
+    servers:
+      - url: http://some.url/v1
+    paths:
+      /things:
+        get:
+          summary: List all things
+        post:
+          summary: Create a thing
+          operationId: createThings
+          tags:
+            - things
+          responses:
+            '201':
+              description: Null response
+            default:
+              description: unexpected error
